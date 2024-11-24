@@ -12,13 +12,9 @@ class Player{
   isAlive(){
     return this.#health>0;
   }
-  takeDamage(damage)
+  updateHealth(health)
   {
-    this.#health-=damage;
-    if(this.#health<=0)
-    {
-        this.#health=0;
-    }
+    this.#health=Math.min(0,health);
   }
   getName(){
     return this.#name;
