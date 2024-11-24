@@ -11,7 +11,7 @@ class game{
     this.#defenceStrategy=defenceStrategy;
    }
 
-   move(attacker,defender){
+    move(attacker,defender){
        if(winner)
        {
         console.log(winner +"already won the match");
@@ -29,6 +29,10 @@ class game{
           console.log(defender+"lost the match to"+ attacker);
           winner=attacker;
           loser=defender;
+          return true;
        }
+       return false;
    }
 }
+
+export default game;
