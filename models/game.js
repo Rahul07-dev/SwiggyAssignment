@@ -13,7 +13,7 @@ class game{
     this.#defenceStrategy=defenceStrategy;
    }
 
-    move(attacker,defender){
+    move(attacker, defender){
        if(this.#winner)
        {
         console.log(winner +"already won the match");
@@ -31,19 +31,28 @@ class game{
          defenderStrength,
          defenderRoll
        ); 
-       let finalDefenderHealth= defender.getHealth()-(attackerDamage-defenceStrength);
+
+       const defHealth=defender.getHealth();
+       let  finalDefenderHealth= defHealth-(attackerDamage-defenceStrength);
        finalDefenderHealth=Math.max(0,finalDefenderHealth);
        defender.updateHealth(finalDefenderHealth);
        
        //GAME STATUS
-       console.log(attacker.getName() + " ATTACKED "+ defender.getName());
+       console.log(
+         attacker.getName() +
+           "D: " +
+           attackerRoll +
+           " ATTACKED " +
+           defender.getName() +
+           "D: " +
+           defenderRoll
+       );
        console.log("Attacker H:"+ attacker.getHealth());
-       console.log("defender H:" + defender.getHealth());
-       console.log(finalDefenderHealth);
+       console.log("defender H:" +defender.getHealth());
 
        if(finalDefenderHealth==0)
        {
-          console.log(defender+"lost the match to"+ attacker);
+          console.log(defender.getName()+" lost the match to "+ attacker.getName());
           this.#winner=attacker;
           this.#loser=defender;
           return true;

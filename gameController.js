@@ -15,6 +15,7 @@ class gameController{
     startGame(){
         const Game = new game(SimpleAttackStrategy,simpleDefenceStrategy);
         const startingPlayer=HealthBasedSPS.getStartingPlayer(this.#player1,this.#player2);
+        console.log(startingPlayer.getName()+" started the game.")
         if(startingPlayer==this.#player2)
         {
             this.#player2 = this.#player1;
@@ -25,13 +26,14 @@ class gameController{
         while(true)
         {
             index=index%2;
-            let gameOver=Game.move(cplayers[index],cplayers[(index+1)%2]);
+            let gameOver= Game.move(cplayers[index],cplayers[(index+1)%2]);
+            // let gameOver=Game.move(this.#player2,this.#player1);
             if(gameOver)
             {
                 console.log("GAME OVER!!!");
                 break;
             }
-            index++;
+            index=(index+1)%2;
         }
     }
 }
