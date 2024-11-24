@@ -1,0 +1,11 @@
+{
+  "name": "swiggyassignment",
+  "version": "1.0.0",
+  "description": "stimulation of Magical Arena for 2 player fight game using dices.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Dev",
+  "license": "ISC"
+}
