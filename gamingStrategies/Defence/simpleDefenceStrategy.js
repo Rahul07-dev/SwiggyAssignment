@@ -1,5 +1,9 @@
+import DefenceStrategy from "./DefenceStrategy.js";
+
 class simpleDefenceStrategy extends DefenceStrategy{
-    calcuateDefence(strength,dieRoll){
+    static  calcuateDefence(strength,dieRoll){
         return strength*dieRoll;
     }
 }
+
+export default simpleDefenceStrategy;

@@ -1,5 +1,7 @@
+import StartingPlayerStrategy from "./StartingPlayerStrategy.js";
+
 class HealthBasedSPS extends StartingPlayerStrategy{
-     getStartingPlayer(player1,player2)
+     static getStartingPlayer(player1,player2)
      {
         if(player1.getHealth()<=player2.getHealth())
         {
@@ -8,3 +10,5 @@ class HealthBasedSPS extends StartingPlayerStrategy{
         return player2;
      }
 }
+
+export default HealthBasedSPS;

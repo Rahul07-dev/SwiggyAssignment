@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "stimulation of Magical Arena for 2 player fight game using dices.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,8 +1,9 @@
-import AttackStrategy from "./AttackStrategy";
+import AttackStrategy from "./AttackStrategy.js";
 
 class SimpleAttackStrategy extends AttackStrategy{
-    calculateDamage(attack,dieRoll)
+    static calculateDamage(attack,dieRoll)
     {
         return attack.dieRoll;
     }
 }
+export default SimpleAttackStrategy;

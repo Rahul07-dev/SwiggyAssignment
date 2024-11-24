@@ -1,5 +1,5 @@
 class AttackStrategy{
-    calculateDamage(attack,dieRoll)
+    static calculateDamage(attack,dieRoll)
     {
         throw new Error('calculate Damage Not implemented');
     }

@@ -1,3 +1,5 @@
+import Dice from "./Dice.js"
+
 class game{
     #dice
     #attackStrategy
@@ -12,23 +14,38 @@ class game{
    }
 
     move(attacker,defender){
-       if(winner)
+       if(this.#winner)
        {
         console.log(winner +"already won the match");
         return;
        }
-       let attacker= this.#dice.roll();
-       let defender= this.#dice.roll();
-       let attackerDamage= this.#attackStrategy.calculateDamage(); 100
-       let defenceStrength= this.#defenceStrategy.calculateDamage();  10 
-       let finalDefenderHeatlh= defender.getHeatlh()-(attackerDamage-defenceStrength);
-       finalDefenderHeatlh=Math.min(0,finalDefenderHeatlh);
-       defender.updateHealth(finalDefenderHeatlh);
-       if(finalDefenderHeatlh==0)
+       let attackerRoll= this.#dice.roll();
+       let attackerAttack= attacker.getAttack();
+       let defenderRoll= this.#dice.roll();
+       let defenderStrength= defender.getStrength();
+       let attackerDamage = this.#attackStrategy.calculateDamage(
+         attackerAttack,
+         attackerRoll
+       );
+       let defenceStrength = this.#defenceStrategy.calcuateDefence(
+         defenderStrength,
+         defenderRoll
+       ); 
+       let finalDefenderHealth= defender.getHealth()-(attackerDamage-defenceStrength);
+       finalDefenderHealth=Math.max(0,finalDefenderHealth);
+       defender.updateHealth(finalDefenderHealth);
+       
+       //GAME STATUS
+       console.log(attacker.getName() + " ATTACKED "+ defender.getName());
+       console.log("Attacker H:"+ attacker.getHealth());
+       console.log("defender H:" + defender.getHealth());
+       console.log(finalDefenderHealth);
+
+       if(finalDefenderHealth==0)
        {
           console.log(defender+"lost the match to"+ attacker);
-          winner=attacker;
-          loser=defender;
+          this.#winner=attacker;
+          this.#loser=defender;
           return true;
        }
        return false;

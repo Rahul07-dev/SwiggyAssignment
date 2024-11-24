@@ -1,4 +1,7 @@
-import game from "./models/game";
+import SimpleAttackStrategy from "./gamingStrategies/Attack/simpleAttackStrategy.js";
+import simpleDefenceStrategy from "./gamingStrategies/Defence/simpleDefenceStrategy.js";
+import HealthBasedSPS from "./gamingStrategies/StartingPlayer/HealthBasedSPS.js";
+import game from "./models/game.js";
 
 class gameController{
     #player1
@@ -6,12 +9,12 @@ class gameController{
     constructor(player1,player2)
     {
         this.#player1=player1;
-        this.player2=player2;
+        this.#player2=player2;
     }
     #steps=0;
     startGame(){
-        const Game = new game();
-        const startingPlayer=HealthBasedSPS(this.#player1,this.#player2);
+        const Game = new game(SimpleAttackStrategy,simpleDefenceStrategy);
+        const startingPlayer=HealthBasedSPS.getStartingPlayer(this.#player1,this.#player2);
         if(startingPlayer==this.#player2)
         {
             this.#player2 = this.#player1;
@@ -22,7 +25,7 @@ class gameController{
         while(true)
         {
             index=index%2;
-            let gameOver=game.move(cplayers[index],cplayers[(index+1)%2]);
+            let gameOver=Game.move(cplayers[index],cplayers[(index+1)%2]);
             if(gameOver)
             {
                 console.log("GAME OVER!!!");
@@ -32,3 +35,5 @@ class gameController{
         }
     }
 }
+
+export default gameController;
